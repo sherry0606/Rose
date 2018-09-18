@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rose</title>
+</head>
+<body style="margin-left: 200px">
+<div style="text-align: center">
+    <canvas id="c"></canvas>
+</div>
+
+<script type="text/javascript">
+    //    var canvas = document.body.appendChild(document.createElement("canvas")),
+    //        context = canvas.getContext("2d"),
+    //        a, b, position;
+    var canvas = document.getElementsByTagName('canvas')[0];
+    var context = canvas.getContext('2d');
+
+    var a = context;
+    var b = document.body;
+    var c = canvas;
+
+    document.body.clientWidth;
+    var zBuffer = [];
+    var SIZE = 777;
+    canvas.width = canvas.height = SIZE;
+    var h = -350;
+
+    for (a = 0; a < 1; a += .001) {
+        for (b = 0; b < 1; b += .001) {
+            //Prevent Overflow
+            if (position = surface(a, b)) {
+                context.fillRect(position.x, position.y, 1, 1);
+            }
+        }
+    }
+
+    function surface(a, b,c) {
+        //Use a and b as range parameters
+        var x = a * 100,
+            y = b * 100,
+            radius = 50,
+            x0 = 50,
+            y0 = 50;
+
+        if ((x - x0) * (x - x0) + (y - y0) * (y - y0) < radius * radius) {
+            //In the circle
+            return {
+                x: x,
+                y: y * (1 + b) / 2,
+                r: 100 + Math.floor((1 - b) * 155),
+                g: 50,
+                b: 50
+            };
+        } else {
+            //Out of the circle
+            return null;
+        }
+
+        //The area of this surface is 50*50
+    }
+
+    for (a = 0; a < 1; a += .01) {
+        for (b = 0; b < 1; b += .001) {
+            if (point = surface(a, b)) {
+                context.fillStyle = "rgb(" + point.r + "," + point.g + "," + point.b + ")";
+                context.fillRect(point.x, point.y, 1, 1);
+            }
+        }
+    }
+
+    for (a = 0; a < 1; a += .001) {
+        for (b = 0; b < 1; b += 0.01) {
+            if (point = surface(a, b)) {
+                pX = Math.floor(point.x * (pers))
+            }
+        }
+    }
+</script>
+</body>
+</html>
